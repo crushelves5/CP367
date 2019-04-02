@@ -9,14 +9,16 @@ while [ $birthmonth != "STOP" ]
 do
 	echo "Enter Birth day(Int)"
 	read birthday
+	echo "Enter Birth year(YYYY)"
+	read birthyear
 	offset=0
 	if [ $# -gt 0 ]
 	then
 		offset=$1
 		offset=$((offset*24*60*60))
-		if [ $offset -gt 1296000 ]
+		if [ $offset -gt 473040000 ]
 		then
-			offset=1296000
+			offset=473040000
 		fi
 	fi
 	#Get current Date and apply offset if it exists, then extract the month and day
@@ -42,7 +44,8 @@ do
 
 	if [ $month -eq $birthmonth -a $day -eq $birthday ]
 	then
-		echo "Happy Birthday"
+		age=$((year-birthyear))
+		echo "Happy Birthday. You are $age years old"
 	else
 		if [ $birthmonth -gt $month ] || [ $birthmonth -eq $month -a $birthday -gt $day ]
 		then
