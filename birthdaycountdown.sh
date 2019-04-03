@@ -27,25 +27,34 @@ do
 	month=$(date -d @$currentTime +%m)
 	day=$(date -d @$currentTime +%d)
 	year=$(date -d @$currentTime +%Y)
-
+	festive=""
 	if [ $month -eq 10 -a $day -eq 31 ]
 	then
 		echo "Happy Halloween"
+		festive=" Halloweeny"
 	elif [ $month -eq 12 -a $day -eq 25 ]
 	then
 		echo "Merry Christmas"
+		festive=" Christmasy"
 	elif [ $month -eq 3 -a $day -eq 17 ]
 	then
 		echo "Happy St. Patrick's Day"
+		festive=" Patricky"
 	elif [ $month -eq 7 -a $day -eq 1 ]
 	then
 		echo "Happy Canada Day"
-	fi
+		festive=" Canada + You"
+ 	fi
 
 	if [ $month -eq $birthmonth -a $day -eq $birthday ]
 	then
 		age=$((year-birthyear))
-		echo "Happy Birthday. You are $age years old"
+		if [ $festive != "" ]
+		then
+			echo "Happy$festive Birthday. You are $age years old"
+		else
+			echo "Happy Birthday. You are $age years old"
+		fi
 	else
 		if [ $birthmonth -gt $month ] || [ $birthmonth -eq $month -a $birthday -gt $day ]
 		then
